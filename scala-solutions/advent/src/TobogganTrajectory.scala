@@ -3,7 +3,6 @@ import io._
 
 import scala.jdk.StreamConverters._
 
-
 object TobogganTrajectory extends IOApp {
 
   private def parseCourse: IO[List[LazyList[Int]]] = withLines("../inputs/day3.txt") { stream =>

@@ -30,3 +30,15 @@ Couldn't find a way to do any cute reduce, and my parsing code is hilariously in
 ## Part 2
 
 Oh man I love when these just generalize (aside from having to promote from Int to Long).
+
+# Day 4
+
+## Part 1
+
+Well, it's not traversal, but there's more janky parsing. Oh well. Let's just rip this stuff into a map and do the dumbest possible validation. Don't want to get too fancy until part 2.
+
+## Part 2
+
+Ug. per-field validation. Not surprising. I could go find a library, or I could just... regex the whole thing? Probably both regex and some validation (don't want to regex year ranges...).
+
+Seems like they could have done more with optional fields - I just ended up not even looking at cid.
