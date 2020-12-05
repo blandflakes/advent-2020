@@ -17,3 +17,16 @@ Lot of string mangling here. Think I'm just going to do the naive "parse everyth
 ## Part 2
 
 This seems like I just have to add another validation function...
+
+# Day 3
+
+## Part 1
+
+Ug. I HATE traversal questions. And this one looks like it theoretically wants infinite sequences to the right. Scala has some support for that, though it's not as nice as Clojure. Could
+also just calculate how many I'm going to need based on the length of the file. Not sure it's going to be straightforward to do the whole problem within the buffered file... might just be cleaner to load into memory and build nested lazy lists from there.
+
+Couldn't find a way to do any cute reduce, and my parsing code is hilariously inefficient. but it's solved.
+
+## Part 2
+
+Oh man I love when these just generalize (aside from having to promote from Int to Long).
