@@ -42,3 +42,14 @@ Well, it's not traversal, but there's more janky parsing. Oh well. Let's just ri
 Ug. per-field validation. Not surprising. I could go find a library, or I could just... regex the whole thing? Probably both regex and some validation (don't want to regex year ranges...).
 
 Seems like they could have done more with optional fields - I just ended up not even looking at cid.
+
+# Day 5
+
+## Part 1
+
+Seems like a straightforward binary search, but of course it's really easy to be off by one in many cases. Yup, spent a lot of time to figure out that I needed to step up by 1 when picking the higher range.
+
+## Part 2
+
+This seems... under-specified. I guess the seats probably present in sorted order? So the algorithm looks to be "find the spot in the list where a number is missing, but the surrounding
+numbers are there." In other words, look to the spot where the current seat is 2 ids below the next seat?
