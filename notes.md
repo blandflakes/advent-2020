@@ -53,3 +53,17 @@ Seems like a straightforward binary search, but of course it's really easy to be
 
 This seems... under-specified. I guess the seats probably present in sorted order? So the algorithm looks to be "find the spot in the list where a number is missing, but the surrounding
 numbers are there." In other words, look to the spot where the current seat is 2 ids below the next seat?
+
+# Day 6
+
+## Part 1
+
+Well, I guess we can reuse the input parser from the passport thing batch these. Then we just shove everything in a Set? Ok, I put it together, but my answer is wrong. It's... not clear how. AH, found the bug. My batching code can leave lines in the accumulator after the fold.
+
+I've left Day 4 bugged, but fixed this in Day 6.
+
+## Part 2
+
+Well, another elaboration that totally blows up the data structures of Part 1. Need to intersect each individual person and get the count. Probably just a totally parallel set of methods.
+
+Ended up rewriting the code to return lists of batches, and then using some flatten grossness to get the same count. On to part 2. Set intersection to the rescue.
