@@ -67,3 +67,21 @@ I've left Day 4 bugged, but fixed this in Day 6.
 Well, another elaboration that totally blows up the data structures of Part 1. Need to intersect each individual person and get the count. Probably just a totally parallel set of methods.
 
 Ended up rewriting the code to return lists of batches, and then using some flatten grossness to get the same count. On to part 2. Set intersection to the rescue.
+
+# Day 7
+
+## Part 1
+
+Looks like the knapsack problem or similar. Could be done with dynamic programming, I think. This shouldn't be *too* bad; I think a recursive search of the rules with base cases "empty" (false), "any gold" (true) and memoization should do it. At some point it might be worth abstracting out a simple "mapLines" that calls my contextual "withLines", though most problems with more complicated parsing so far also wanted batches. I guess, actually, that the functional way to do that would be to map to an Option - blank lines get None, valid lines get Some, then we could have split on None. Oh well.
+
+The parser for this is ugly, procedural, java. TODO come back and try one of the attoparsec clones or whatever? It would be nice to have a tool for stuff like this.
+
+I also didn't bother memoizing. Let's see if part 2 would like that.
+
+## Part 2
+
+This was a relatively straightforward solution, and they didn't make the input large enough that I had to worry about runtime. Depth-first search is pretty common in interviews, after all.
+
+Some TODOs that might be interesting, aside from playing with a parsing library:
+* make the calls tail recursive
+* memoize the calls instead of potentially repeating work
