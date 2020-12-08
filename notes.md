@@ -85,3 +85,21 @@ This was a relatively straightforward solution, and they didn't make the input l
 Some TODOs that might be interesting, aside from playing with a parsing library:
 * make the calls tail recursive
 * memoize the calls instead of potentially repeating work
+
+# Day 8
+
+## Part 1
+
+Seems like we always end up writing an interpreter - fun stuff. Interesting to note that it's hitting the same position that is an infinite loop, not the same (structurally) instruction. I did _not_ solve this recursively/functionally, it just didn't feel right.
+
+## Part 2
+
+I figured that part 2 would somehow involve rerunning part 1, but wasn't sure how. I think at this point a small refactoring to make part one more general - it can return something that indicates infinite loop, or something that indicates successful termination (probably just an Either).
+
+Ok, having rewritten this so that it can also handle successful outcomes, I think I just... run the program over and over, mutating a single instruction each time until I get Successful.
+
+I struggled with finding an elegant way to express the mutations. In a way, the fact that they are only temporary (that we only mutate one line, ever) makes it more difficult. Last year's IntCode problem had the "tape" modifying itself, so it was easy to just recursively pass a modified state. In this case, we have to "go back" if the mutation doesn't yield a result.
+
+Thinking about building a lazy sequence of mutations, which would also allow me to flatmap out the instructions that wouldn't mutate (acc).
+
+I'm pretty happy with that outcome. A potential TODO would be to come back and write a functional version of evaluate, but this one looks much more readable as a while loop, IMO.
