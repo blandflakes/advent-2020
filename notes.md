@@ -103,3 +103,39 @@ I struggled with finding an elegant way to express the mutations. In a way, the 
 Thinking about building a lazy sequence of mutations, which would also allow me to flatmap out the instructions that wouldn't mutate (acc).
 
 I'm pretty happy with that outcome. A potential TODO would be to come back and write a functional version of evaluate, but this one looks much more readable as a while loop, IMO.
+
+# Day 9
+
+## Part 1
+
+This one isn't immediately obvious to me. I'm tempted to suggest that a sliding window is going to be useful here, but what do I actually do within the window? I want to be able to ask "are there any two numbers that add to X"?
+
+Can I lazily generate the sliding windows, and calculate all of the possible sums? (That's each number plus each other number). Shouldn't it be possible to only update the window by the thing that slide out and the thing that slid in? We know that worst case is we're going to do all of them.
+
+Maybe this doesn't happen functionally. I could do the inefficient sliding window thing but I feel like I'm just going to be sad. Let's see.
+
+A wc -l reveals that these aren't unique.
+
+Ok, it's getting kinda gross to calculate this window mutably. Let's just do the wasteful window thing where we regenerate the sums every time, in case part 2 screws with us anyway. (Us?)
+
+## Part 2
+
+Huh. I feel there is some elegant solution here but... I'm not sure what it is.
+
+What's the inelegant solution? Try every possible list of contiguous numbers? How does that look?
+
+position 0 until we exceed. Then position 1 until we exceed. That's gross, and we never actually get smaller. Jeez... What's the set of all possible lists?
+0-1, 0-2, 0-3... 0-(n-2)
+1-2, 2-3, 3-4... 0-(n-2)
+
+Is this right? There is a lot of wasted work there... Can we just generate all possible sums, though?
+
+0 + 1, 0 + 1 + 2, 0 + 1 + 2 + 3
+Also, though: 1 + 2, 2 + 3
+
+Ok, so we can start with all pairwise sums, and then add their neighbors, if none of them add up? Or... what if I just do progressively larger sliding windows? We can combine sums over the window very easily. Oh.
+
+Also, today I learned that you can call String.toLong instead of using Long.parseLong.
+
+
+Ok, weird day. Grossly inefficient on my part, on all fronts.
