@@ -139,3 +139,19 @@ Also, today I learned that you can call String.toLong instead of using Long.pars
 
 
 Ok, weird day. Grossly inefficient on my part, on all fronts.
+
+# Day 10
+
+## Part 1
+
+I feel like I must be missing something that makes this hard... Can't I just sort my input, and then build up a count of differences "up"?
+
+Ok, I'm not missing anything. Weird.
+
+## Part 2
+
+This looks like I need to do a sort of "branching out" in order to identify all possible combinations. So basically, starting at 0, we are going to make a call where we plug in each adapt er within range of 0, and then treat those sublists as the beginning of more recursive calls... ok, shouldn't be too bad.
+
+Turns out it's too bad. Amazing, even at this input size. I guess I basically *have* to DP this. Fine, so how can I do it? I need to build a matrix which counts "connections to here". Then, as I progress down my adapter chain, for each element, I can get all my possible connections, and increment their count by the number of chains to this point.
+
+I'm not pleased with how this one turned out, but I'm pleased that it's done.
