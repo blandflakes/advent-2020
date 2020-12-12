@@ -155,3 +155,13 @@ This looks like I need to do a sort of "branching out" in order to identify all 
 Turns out it's too bad. Amazing, even at this input size. I guess I basically *have* to DP this. Fine, so how can I do it? I need to build a matrix which counts "connections to here". Then, as I progress down my adapter chain, for each element, I can get all my possible connections, and increment their count by the number of chains to this point.
 
 I'm not pleased with how this one turned out, but I'm pleased that it's done.
+
+# Day 11
+
+## Part 1
+
+Grumble grumble something about stupid grid problems.
+
+## Part 2
+
+Seriously? This is obnoxious.
