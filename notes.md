@@ -165,3 +165,17 @@ Grumble grumble something about stupid grid problems.
 ## Part 2
 
 Seriously? This is obnoxious.
+
+# Day 12
+
+## Part 1
+
+Taking a page from yesterday's book and continuing to mostly hardcode and repeat operations. Nothing clever here on my part.
+
+## Part 2
+
+Man, I seriously hate positional puzzles. If they keep using these sorts of problems I'm likely to lose motivation very quickly.
+
+This might not be too bad, thankfully. I'll maybe even retrofit some of this to day 1...
+
+Took a while because I had my rotations wacky. Good thing they were always clean rotations instead of arbitrary degrees, though if I'd had to use real formulae I probably wouldn't have made the blunder.
