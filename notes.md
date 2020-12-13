@@ -179,3 +179,29 @@ Man, I seriously hate positional puzzles. If they keep using these sorts of prob
 This might not be too bad, thankfully. I'll maybe even retrofit some of this to day 1...
 
 Took a while because I had my rotations wacky. Good thing they were always clean rotations instead of arbitrary degrees, though if I'd had to use real formulae I probably wouldn't have made the blunder.
+
+# Day 13
+
+## Part 1
+
+This looks like I just need to simulate the bus routes from time 0 to the time I'm leaving, and take the first departure. I wonder if there is a way to interleave a sequence per bus, or if I need to look up each base at each interval?
+
+Thank god timestamp is just a monotonically increasing int.
+
+## Part 2
+
+I can use a sliding window here. It's going to be slow. There's probably some optimization, like the "Why is grep fast" thing, but maybe if I just wait a while it will find the answer...
+
+Ok great, so this one is not tractable with a naive solution. So there must be some "trick" or optimization to get it done...
+
+I feel like I should just be able to generate the exact number.
+
+Took a lot of beating around the bush to get here. The idea generally being that these patterns should be derivable. They are. Since bus ids are unique, and I think the fact that they're prime plays into this (though not mentioned...), we can say that the pattern would repeat every multiple of them. Problem is that they're offset positionally - that would only solve if we wanted all busses to arrive at once. Fine... so I wrote some gross thing that does the equivalent of aligning some gears:
+
+1. step by stepSize (initially 1) up to a timestamp where adding position is a multiple of the busId (0 is always the first)
+2. set the stepSize to stepSize * busId
+3. recur to 1
+
+1 is an inner loop.
+
+This is kinda gross, and I had to fumble forever to get any kind of insight.
