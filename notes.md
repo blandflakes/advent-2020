@@ -223,3 +223,17 @@ The double mask approach basically wrote itself.
 At first blush, maybe I'm not going to get away with that. I'm going to have to get the memory address into a binary string, and then back out... several times. This shouldn't be _too_ awful...
 
 Ok it was kind of annoying, but we got there.
+
+# Day 15
+
+## Part 1
+
+Ok, so what's the structure here. I think I can just make a Map of memory, referring to it when considering my current answer, and adding to it after? I think I just want a usual infinite stream kinda thing.
+
+Ok, not so bad.
+
+## Part 2
+
+One could naively try to run this, but I'm guessing that would be too slow or they wouldn't have gone that route with the challenge?
+
+Oh... nope it just takes a few seconds. I wonder if *only* storing the last two instead of growing the lists makes anything faster. I'm not sure I care enough :)
