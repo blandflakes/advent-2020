@@ -205,3 +205,21 @@ Took a lot of beating around the bush to get here. The idea generally being that
 1 is an inner loop.
 
 This is kinda gross, and I had to fumble forever to get any kind of insight.
+
+# Day 14
+
+## Part 1
+
+Well, Scala's bitwise stuff is kinda anemic (so is Java's). I don't know how much work I want to do to be able to work in some kind of "native binary type", though that kind be a fun exercise. I could also isolate the binary work to the mask. Read it in, create an OR mask (this will apply the 1 override) and an AND mask (applying the 0 override). Those can live as whatever kind of number as long as I can use `&` and `^`.
+
+Need to parse batches, first.
+
+I found that to be a massive pain. Oh well, now I'm here, let's see if I can get this star without sobbing about binary representations.
+
+The double mask approach basically wrote itself.
+
+## Part 2
+
+At first blush, maybe I'm not going to get away with that. I'm going to have to get the memory address into a binary string, and then back out... several times. This shouldn't be _too_ awful...
+
+Ok it was kind of annoying, but we got there.
