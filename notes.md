@@ -265,3 +265,7 @@ Quick check reveals that this... also is not the case. Ok, so we need to support
 Ug. 20 is too large to generate all permutations. FINE. I'll do the backtracking.
 
 Spent less time writing that than I spent avoiding it. Oh well, I would have felt clever had I succeeded.
+
+Looking at discussion boards about this, it feels like I may have missed something? I feel like my validTickets check is correct, but people seem to be able to assume that if you get rid of invalid tickets, you get to the answer...
+
+Yeah super annoyingly I rewrote the naive thing I'd had earlier that just assumes this was deducible without backtracking and it wrked fine. Now I feel even less clever.
