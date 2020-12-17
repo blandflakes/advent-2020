@@ -237,3 +237,31 @@ Ok, not so bad.
 One could naively try to run this, but I'm guessing that would be too slow or they wouldn't have gone that route with the challenge?
 
 Oh... nope it just takes a few seconds. I wonder if *only* storing the last two instead of growing the lists makes anything faster. I'm not sure I care enough :)
+
+# Day 16
+
+## Part 1
+
+This seems fairly straightforward. I'll parse these into separate components, but I think I just need to find any number in "nearby tickets" which is not in any of the ranges.
+
+## Part 2
+
+Process of elimination, but how does that actually get encoded?
+
+We can iterate over every ticket, and each value. For each of those values, we're trying to identify which field it is, which actually means eliminating from contention fields which are violated. We want to end up with what? Either an Array[FieldName] or Map[String, Position].
+
+Refactored the restrictions component to be a Map[String, Restriction] for ease of lookup.
+
+Hm. I did a quick and dirty "sum up indexes and then reduce them" situation, but I think it's the case that there isn't guaranteed to be one answer per field? Or rather, there is, but it's not deducible from violations alone. I think there may need to be some backtracking or something when selecting these things.
+
+Ok, fine, so I have to have the candidates and solve, I guess. Wow, this is actually way more complicated. I've done backtracking before, I just... don't want to. Can I do walksat?
+
+Blech. Ok, what do I need? I can get a list of potential fields (strings) for each position. Then I can write a solver that picks one by one, and when it reaches an invalid state, backtracks, until we find a full solution.
+
+Ok, refactored that. Can I do this without backtracking? It may be that while you don't wind up with one candidate per slot, you end up with one slot that has one candidate, and can deduce from there.
+
+Quick check reveals that this... also is not the case. Ok, so we need to support checking multiple options. Can we just create a bunch of combinations and filter out the invalid ones?
+
+Ug. 20 is too large to generate all permutations. FINE. I'll do the backtracking.
+
+Spent less time writing that than I spent avoiding it. Oh well, I would have felt clever had I succeeded.

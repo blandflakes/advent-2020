@@ -53,8 +53,6 @@ object Docking extends IOApp {
   def part2(): IO[Long] = withBatches { batches =>
     batches.foldLeft(Map[Long, Long]()) { case (acc, batch) =>
 
-      // Let's start with the easy one, which is the andMask
-      val andMask = java.lang.Long.parseLong(batch.mask.value.replaceAll("X", "1"), 2)
       batch.instructions.flatMap { assignment =>
         // This unholy chain does the work of creating a starting place for the spraying of destinations. We can't
         // use bitwise logic as far as I can tell, so we do our own masking - leave 0s alone, but copy in 1 or X (X
