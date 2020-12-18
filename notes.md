@@ -269,3 +269,23 @@ Spent less time writing that than I spent avoiding it. Oh well, I would have fel
 Looking at discussion boards about this, it feels like I may have missed something? I feel like my validTickets check is correct, but people seem to be able to assume that if you get rid of invalid tickets, you get to the answer...
 
 Yeah super annoyingly I rewrote the naive thing I'd had earlier that just assumes this was deducible without backtracking and it wrked fine. Now I feel even less clever.
+
+# Day 17
+
+# Part 1
+
+Didn't we already do Conway's Game of Life? It's not clear to me why the representation appears to grow. I guess that's because the "outer boundaries" are all 100% inactive prior to the first iteration? No, it's actually not clear to me how the x and y dimensions grow in this puzzle.
+
+This input is incoherent? I guess they must be omitting some "empty lines". I mean this is just Conway's, so I'll try to write something in the morning.
+
+Ok, I got the input represented in some types that seem useful. How do I actually go about solving this? I need to, for all neighbors of all points, do the calculation (otherwise we're only looking at points in our starting grid which is a subset).
+
+Not so bad with a map.
+
+## Part 2
+
+Ok, 4th dimension. Wonder if I can reuse the point or if I should try to generic type this somehow. Just a matter of adding a point and adding neighbors...
+
+Made a CartesianPoint trait, made existing Point Point3, should just be able to pull out and reuse most of the stuff.
+
+Ok, ignoring the ridiculous presentation of input examples, this wasn't so bad.
