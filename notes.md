@@ -325,3 +325,21 @@ That took forever. Lessons learned:
 2. I wasn't parsing correctly because my parsers didn't have a base case to return just an Argument if no addition was present. There is also a pretty rough naming problem - mult and add aren't correct terms, but they somewhat conveyed the dual layers I was trying to hit.
 
 I liked writing the interpeter, but the parser was kinda painful.
+
+# Day 19
+
+## Part 1
+
+Guess we're writing a regex engine. This might be a little messy, we'll see. Try to build the rules first, kinda like the AST stuff from yesterday, then parse into them and "eval" them. Need to figure out the shape of the eval (length, does it consume string, do we care about partial matches?), but that can wait. I'm also not sure how to handle multiple matches yet - with the Or operator, we might need to try both as we continue matching downstream. Maybe I can keep the Or processing local to the InSequence rule, which knows enough to know which branch it should take? No, not if sequences can OR to other sequences... the right side of an OR being less greedy than the... but there actually is no greediness. Branches could still be subsets, though.
+
+Ok lots of fun writing rules engines and abstract types... now, a parser in atto. It looks like there are basically two kinds of rules - literals that specify a single character, and "Everything Else", which is a sequence that contains references and unions. There's actually association here... ORs are association. Hm.
+
+Just realized I've been using run wrong the whole time by running stuff sync instead of chaining it and passing it up. Will do it right from now on.
+
+Atto is really paying off in the parsing department, looks like my evaluation might be bunk though. Ah, I was overly strict about total consumption in InSequence.
+
+## Part 2
+
+Hm. I just replaced the rules and things just worked. I'll take it?
+
+An interesting elaboration would be to support actually returning the groups that matched, but I've spent a lot of time in front of computer screens recently.
