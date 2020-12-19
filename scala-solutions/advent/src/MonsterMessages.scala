@@ -1,4 +1,3 @@
-import atto.ParseResult
 import cats.effect.{ExitCode, IO, IOApp}
 import io.withLines
 
@@ -77,7 +76,7 @@ object MonsterMessages extends IOApp {
     }
   }
 
-  private def parseRule(line: String): ParseResult[(Int, Rule)] = {
+  object RuleParser {
     import atto._
     import Atto._
     val index: Parser[Int] = (int <~ char(':')).token
@@ -96,13 +95,14 @@ object MonsterMessages extends IOApp {
     } yield Or(left, right)
 
     val parseRule: Parser[(Int, Rule)] = index ~ (charPattern | or | inSequence)
-    parseRule.parseOnly(line)
+
+    def parseRule(line: String): ParseResult[(Int, Rule)] = parseRule.parseOnly(line)
   }
 
   def parseInput: IO[(Map[Int, Rule], List[String])] = withLines("../inputs/day19.txt") { stream =>
     IO {
       val (rulesText, tail) = stream.span(_.nonEmpty)
-      val rules = rulesText.map(parseRule).map(_.option.get).toMap
+      val rules = rulesText.map(RuleParser.parseRule(_)).map(_.option.get).toMap
       val messages = tail.drop(1)
       // Let's just realize this into memory
       (rules, messages.toList)
