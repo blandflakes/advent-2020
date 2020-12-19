@@ -289,3 +289,39 @@ Ok, 4th dimension. Wonder if I can reuse the point or if I should try to generic
 Made a CartesianPoint trait, made existing Point Point3, should just be able to pull out and reuse most of the stuff.
 
 Ok, ignoring the ridiculous presentation of input examples, this wasn't so bad.
+
+# Day 18
+
+## Part 1
+
+Hm. Parsing isn't so bad... The numbers in my input are all single digits, so I could do something pretty naive, probably. Wonder if it's easier to do this "correctly" anyway? Or is this an opportunity to use a library?
+
+Trying atto.
+
+... wow that was fun and easy. Oh wait, forget parens entirely.
+
+Not actually that close, either, because I think my associativity is wrong. I was grouping to the right, even before parens, which would make this right associative.
+
+Had to follow along here: https://medium.com/synerise/yet-another-arithmetic-parser-in-scala-43dad055d81f
+
+To get out of my infinite loop when going left-associative. You need to stick a terminal on the left, while passing it into the left-associative grammar to keep left association.
+
+Parens weren't so bad, though.
+
+## Part 2
+
+This *should* just be a matter of reorganizing my parser, but... ouch.
+
+Ok, so I need two levels of evaluation - multiplication has to evaluate prior to addition, which means addition needs to aggregate "prior to" (at a higher level than) multiplication.
+
+Maybe I just make two explicit parsers and try to represent the levels that way?
+
+Ok, I did it, but realized I got it backward - addition is supposed to happen first.
+
+Hm. Actually this is a real pain in the ass. I also don't know that I even like enforcing precedence at this level. But if I'm grouping things associatively, I have to, right? My parse tree basically requires it? Right. And there isn't a way to simplify because left associativity didn't go away - we still have it for the various operations. We *need* to handle addition at a lower level in the parsers.
+
+That took forever. Lessons learned:
+1. `parens` from atto will stackoverflow if it forms a recursive definition, and no amount of `delay` will save you.
+2. I wasn't parsing correctly because my parsers didn't have a base case to return just an Argument if no addition was present. There is also a pretty rough naming problem - mult and add aren't correct terms, but they somewhat conveyed the dual layers I was trying to hit.
+
+I liked writing the interpeter, but the parser was kinda painful.
