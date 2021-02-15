@@ -343,3 +343,16 @@ Atto is really paying off in the parsing department, looks like my evaluation mi
 Hm. I just replaced the rules and things just worked. I'll take it?
 
 An interesting elaboration would be to support actually returning the groups that matched, but I've spent a lot of time in front of computer screens recently.
+
+# Day 20
+
+# Part 1
+
+Blech. GRIDS. I hate them! Anyway, rough plan:
+
+1. Parse the input, which seems pretty straightforward
+2. Generate all possible versions of each tile
+3. Group them in some optimizing way - needs thought, but I'm thinking that there is some potential gain to be had where we can easily look up the pieces... though I haven't thought about the algorithm for this yet.
+4. Solve part 1 using #3
+
+Final note: Yup gave up here. A fun exercise anyway. Committing to delete this repo from my laaptop.
